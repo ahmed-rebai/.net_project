@@ -1,0 +1,39 @@
+@model IEnumerable<AfterSalesService.Models.Complaint>
+
+@{
+    ViewData["Title"] = "Complaints";
+}
+
+<div class="container">
+    <h2>Complaints</h2>
+    <p>
+        <a asp-action="Create" class="btn btn-primary">Create New Complaint</a>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Customer</th>
+                <th>Product</th>
+                <th>Description</th>
+                <th>Status</th>
+                <th>Date Created</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Customer.Name</td>
+                    <td>@item.Product.Name</td>
+                    <td>@item.Description</td>
+                    <td>@item.Status</td>
+                    <td>@item.DateCreated.ToShortDateString()</td>
+                    <td>
+                        <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info btn-sm">Details</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
